@@ -1,0 +1,205 @@
+{% extends 'planner/base.html' %}
+
+{% load static %}
+
+{% block title %}Home - Wedding Planner{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero">
+  <div class="hero-content">
+    <h1>Forever Bonds with Love</h1>
+    <p>The Focus of Aaradhya is on Creating Enduring Memories</p>
+    <p>via Elegant, Courteous, and Sincere Wedding Ceremonies</p> 
+    <p>that embody hospitality and the Virtues of a Moral Path</p> 
+    <a href="{% url 'services' %}" class="cta-btn" aria-label="Book Event Button">
+      <i class="fas fa-calendar-check"></i> Book Event
+    </a>
+  </div>
+</section>
+
+<!-- About Us Section -->
+<section id="about" class="section">
+    <div class="container">
+      <h2>About Us</h2>
+      <p class="intro-text">At AaradhyaAikyam, we specialize in turning your wedding dreams into reality with a perfect blend of elegance, passion, and meticulous planning. Our dedicated team works tirelessly to ensure that every aspect of your special day is tailored to reflect your unique love story. We believe that every wedding is a celebration of love, and we are here to create unforgettable experiences that resonate with your vision.</p>
+      
+      <blockquote class="tagline">
+        <p>"Where Vows Become Forever, Connecting Hearts for the Future."</p>
+      </blockquote>
+  
+      <div class="about-timeline">
+        <!-- Timeline Block 1: Experience -->
+        <div class="timeline-block">
+          <div class="timeline-content left">
+            <h3>Experience</h3>
+            <p>With over a decade of experience in the wedding industry, our team is adept at transforming visions into reality. We understand the nuances of planning a wedding and are committed to delivering exceptional service, ensuring your day unfolds seamlessly.</p>
+          </div>
+        </div>
+  
+        <!-- Timeline Block 2: Arushi's Profile -->
+        <div class="timeline-block">
+          <div class="timeline-content right">
+            <img src="{% static 'images/arushi.jpg' %}" alt="Arushi Mathur - Founder & Lead Planner" class="admin-photo">
+            <h3>Arushi Mathur</h3>
+            <p class="role">Founder & Lead Planner</p>
+            <p>As the founder and lead planner, Arushi combines her artistic vision with exceptional leadership skills to craft personalized and unforgettable weddings. Her commitment to excellence and her eye for detail ensure that each event is a true reflection of the couple's love story.</p>
+          </div>
+        </div>
+  
+        <!-- Timeline Block 3: Care -->
+        <div class="timeline-block">
+          <div class="timeline-content left">
+            <h3>Passion</h3>
+            <p>Our passion for weddings drives us to create events that are as unique as each couple. We thrive on the excitement of curating experiences that not only celebrate love but also connect families and friends in meaningful ways.</p>
+            
+          </div>
+        </div>
+  
+        <!-- Timeline Block 4: Zainab's Profile -->
+        <div class="timeline-block">
+          <div class="timeline-content right">
+            <img src="{% static 'images/zainab.jpg' %}" alt="Zainab Bee - Creative Director" class="admin-photo">
+            <h3>Zainab Bee</h3>
+            <p class="role">Creative Director</p>
+            <p>With a flair for creativity and a passion for aesthetics, Zainab adds a unique artistic touch to every event. Her innovative ideas and design concepts transform ordinary spaces into extraordinary experiences that leave lasting memories.</p>
+          </div>
+        </div>
+  
+        <!-- Timeline Block 5: Passion -->
+        <div class="timeline-block">
+          <div class="timeline-content left">
+            <h3>Care</h3>
+            <p>We believe that every detail matters. Our approach is centered around genuine care and dedication, ensuring that we go above and beyond to make your wedding day flawless. From the initial consultation to the final send-off, we are with you every step of the way.</p>
+          </div>
+        </div>
+  
+        <!-- Timeline Block 6: Nikita's Profile -->
+        <div class="timeline-block">
+          <div class="timeline-content right">
+            <img src="{% static 'images/nikita.png' %}" alt="Nikita - Operations Manager" class="admin-photo">
+            <h3>Nikita</h3>
+            <p class="role">Operations Manager</p>
+            <p>Nikita ensures seamless logistics and flawless execution of every wedding detail. With her exceptional organizational skills, she manages everything from vendor coordination to timeline adherence, allowing couples to relax and enjoy their special day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+  
+<!-- Our Services Section -->
+<section id="services" class="section">
+  <div class="container">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <i class="fas fa-gem" aria-hidden="true"></i>
+        <h3>Venue Selection</h3>
+        <p>Exclusive venue options that fit your style, ensuring a breathtaking setting for your big day.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-birthday-cake" aria-hidden="true"></i>
+        <h3>Catering</h3>
+        <p>Curated culinary experiences from renowned chefs to make your celebration deliciously memorable.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-music" aria-hidden="true"></i>
+        <h3>Entertainment</h3>
+        <p>Live music, DJs, and performers to keep your guests entertained throughout the celebration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="section">
+  <div class="container">
+    <h2>Portfolio</h2>
+    <div class="gallery">
+      {% for item in portfolio_items %}
+      <div class="portfolio-item {% if forloop.counter > 4 %}hidden{% endif %}">
+        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="portfolio-img">
+        <div class="overlay">
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button id="seeMoreBtn" class="see-more-btn" aria-label="Toggle More Portfolio Items">
+      <i class="fas fa-chevron-down"></i> See More
+    </button>
+  </div>
+</section>
+<!-- Testimonials Section -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonials">
+      {% for testimonial in testimonials %}
+      <div class="testimonial-card" 
+           {% if testimonial.image %}
+               style="background-image: url('{{ testimonial.image.url }}');" 
+           {% else %}
+               style="background-color: transparent;"  <!-- Default background color if no image -->
+           {% endif %}>
+        <div class="testimonial-text">
+          <p>"{{ testimonial.testimonial }}"</p>  <!-- Display the testimonial text -->
+          <h4>- {{ testimonial.client_name }}</h4>  <!-- Display the client's name -->
+        </div>
+      </div>
+      {% empty %}
+      <p>No testimonials available yet.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Testimonial submission form -->
+    <div class="testimonial-form">
+      <h3>Share Your Experience</h3>
+      <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-field">
+          {{ form.client_name }}
+        </div>
+        <div class="form-field">
+          {{ form.testimonial }}
+        </div>
+        <div class="form-field">
+          {{ form.image }}
+        </div>
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-paper-plane"></i> Submit Review
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+{% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const toggleBtn = document.getElementById("seeMoreBtn");
+    const hiddenItems = document.querySelectorAll(".portfolio-item.hidden");
+
+    toggleBtn.addEventListener("click", function() {
+      hiddenItems.forEach(item => {
+        item.classList.toggle("hidden");
+        if (!item.classList.contains("hidden")) {
+          item.classList.add("fade-in");
+          setTimeout(() => item.classList.remove("fade-in"), 600); // Remove class after animation
+        }
+      });
+      toggleBtn.innerHTML = toggleBtn.textContent.trim() === "See More" 
+        ? '<i class="fas fa-chevron-up"></i> See Less' 
+        : '<i class="fas fa-chevron-down"></i> See More';
+    });
+  });
+</script>
+{% endblock %}
+
+{% endblock %}

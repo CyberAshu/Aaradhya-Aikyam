@@ -1,0 +1,93 @@
+/* navbar.css */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px; /* Reduced padding for a sleeker look */
+    background-color: var(--header-light); /* Solid background initially */
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: background-color 0.3s, padding 0.3s;
+    z-index: 10;
+}
+
+header.transparent {
+    padding: 8px 20px; /* Further reduced padding when transparent */
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--dark-tone); /* Adjusted color for better contrast */
+}
+
+/* Slimmer logo styling */
+header .logo img {
+    height: 60px; /* Decreased height for a more compact look */
+    width: auto;
+    filter: brightness(0); /* Darker logo for visibility */
+    transition: filter 0.3s, height 0.3s; /* Smooth height and brightness transitions */
+}
+
+header.transparent .logo img {
+    height: 50px; /* Shrinks further when scrolling */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0 12px; /* Reduced spacing between nav items */
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500; /* Slightly lighter font weight */
+    font-size: 0.9rem; /* Reduced font size for sleekness */
+    transition: color 0.3s;
+}
+
+header.transparent nav ul li a {
+    color: var(--dark-tone);
+}
+
+header nav ul li a:hover {
+    color: #ffdd59;
+}
+
+#theme-toggle, #menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+header.transparent #theme-toggle, header.transparent #menu-toggle {
+    color: var(--dark-tone);
+}
+
+#menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    header nav {
+        display: none;
+    }
+    header.active nav {
+        display: block;
+    }
+    header nav ul {
+        flex-direction: column;
+    }
+    #menu-toggle {
+        display: block;
+    }
+}
+
+body.dark-mode header {
+    background-color: var(--primary-color-dark);
+}

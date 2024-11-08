@@ -1,0 +1,167 @@
+/* General Section Styling */
+.section {
+  padding: 50px 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Portfolio Header Section */
+.portfolio-header {
+  text-align: center;
+  background: linear-gradient(135deg, #E4C0A8, #391310);
+  color: #ffffff;
+  border-bottom: 4px solid #D8A384;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.portfolio-subtitle {
+  font-size: 1.2rem;
+  color: black;
+}
+
+/* Event Services Styling */
+.event-services {
+  background-color: #f7f7f7;
+}
+
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.service-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex: 1 1 calc(33.333% - 20px);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: #e4c0a8;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Adjusted Image Styling */
+.service-card img {
+  width: 100%;
+  height: 200px; /* Set a fixed height */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  border-bottom: 1px solid #e4e4e4; /* Optional: Adds a subtle separator */
+}
+
+
+.service-content {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.service-content h2 {
+  font-size: 1.5rem;
+  margin: 0 0 10px;
+}
+
+.service-content p {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.btn-book {
+  background-color: #bf7656;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.btn-book:hover {
+  background-color: #945640;
+}
+
+/* Additional Services Styling */
+.additional-services {
+  background-color: #ffffff;
+}
+
+.additional-services h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .service-card {
+    flex: 1 1 calc(48% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-title {
+    font-size: 2rem;
+  }
+
+  .services-container {
+    gap: 15px;
+  }
+
+  .service-card {
+    flex: 1 1 calc(100% - 20px);
+  }
+  
+  .service-content h2 {
+    font-size: 1.3rem;
+  }
+  
+  .btn-book {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-header {
+    padding: 20px 10px;
+  }
+
+  .portfolio-title {
+    font-size: 1.5rem;
+  }
+
+  .portfolio-subtitle {
+    font-size: 1rem;
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+  }
+
+  .service-content p {
+    font-size: 0.9rem;
+  }
+}

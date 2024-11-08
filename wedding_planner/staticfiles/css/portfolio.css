@@ -1,0 +1,219 @@
+/* Portfolio Header Section */
+.portfolio-header {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, #E4C0A8, #391310);
+    color: #ffffff;
+    border-bottom: 4px solid #D8A384; /* Adding a bottom border for separation */
+  }
+  
+  .portfolio-title {
+    font-size: 3.5rem; /* Increased font size for prominence */
+    animation: fadeIn 1s ease-in;
+    margin-bottom: 0.5rem; /* Added margin for spacing */
+  }
+  
+  .portfolio-subtitle {
+    font-size: 1.75rem; /* Increased font size */
+    margin-top: 0.5rem;
+    animation: fadeIn 1.5s ease-in;
+    font-weight: 300; /* Lighter font weight for subtitle */
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Portfolio Gallery Grid */
+  .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; /* Increased gap for better spacing */
+    padding: 3rem 2rem; /* Adjusted padding for a balanced look */
+    margin: 0 auto;
+  }
+  
+  .portfolio-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 12px; /* Slightly increased border radius */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Softer shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .portfolio-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  }
+  
+  .portfolio-image {
+    width: 100%;
+    height: 200px; /* Set a fixed height for consistency */
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .portfolio-card:hover .portfolio-image {
+    transform: scale(1.1); /* Slight zoom effect on image */
+  }
+  
+  .portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Darker overlay for better readability */
+    color: #fff;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1.5rem;
+    transition: opacity 0.4s ease;
+  }
+  
+  .portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+  }
+  
+  /* Button Styles */
+  .view-details-btn {
+    background-color: #D8A384;
+    color: #391310;
+    border: none;
+    padding: 0.8rem 1.5rem; /* Increased padding for a button */
+    margin: 0.5rem 0; /* Added margin for spacing */
+    font-weight: bold;
+    border-radius: 8px; /* Slightly larger radius for a modern look */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centered button content */
+    gap: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .view-details-btn:hover {
+    background-color: #945640;
+    color: #fff;
+    transform: translateY(-2px); /* Subtle lift on hover */
+  }
+  
+  /* Modal Styling */
+  .portfolio-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Darker background for modal */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem; /* Padding for responsiveness */
+  }
+  
+  .portfolio-modal.open-modal {
+    display: flex;
+    animation: fadeModal 0.5s ease;
+  }
+  
+  @keyframes fadeModal {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 2.5rem; /* Increased padding for the modal */
+    border-radius: 12px; /* Increased border radius for modern look */
+    width: 90%;
+    max-width: 700px; /* Increased max width for larger screens */
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Added shadow to modal */
+  }
+  
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px; /* Consistent border radius with card */
+    margin-bottom: 1.5rem; /* Increased margin for spacing */
+  }
+  
+  .close-button {
+    background-color: #D8A384;
+    color: #391310;
+    border: none;
+    padding: 0.8rem 1.5rem; /* Increased padding for the close button */
+    border-radius: 8px; /* Consistent border radius */
+    cursor: pointer;
+    margin: 0.5rem; /* Added margin for spacing */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .close-button:hover {
+    background-color: #945640;
+    color: #fff;
+    transform: translateY(-2px); /* Subtle lift on hover */
+  }
+  
+  /* Navigation Button Styles */
+  .nav-button {
+    background: linear-gradient(135deg, #E4C0A8, #D8A384); /* Subtle gradient */
+    color: #391310; /* Text color */
+    border: none;
+    padding: 1rem 2rem; /* Increased padding for a more substantial look */
+    border-radius: 12px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 1rem; /* Font size */
+    font-weight: bold; /* Bold text */
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    margin: 0.5rem; /* Added margin for spacing */
+  }
+  
+  .nav-button:hover {
+    background: linear-gradient(135deg, #BF7656, #D8A384); /* Darker gradient on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+  
+  .modal-navigation {
+    display: flex;
+    justify-content: space-between; /* Space between buttons */
+    margin-top: 1.5rem; /* Margin above navigation buttons */
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 600px) {
+    .portfolio-title {
+      font-size: 2.8rem; /* Adjusted size for smaller screens */
+    }
+  
+    .portfolio-subtitle {
+      font-size: 1.4rem; /* Adjusted size for smaller screens */
+    }
+  
+    .portfolio-card {
+      border-radius: 8px; /* Reduced radius for smaller screens */
+    }
+  
+    .modal-content {
+      padding: 1.5rem; /* Reduced padding for smaller screens */
+    }
+  
+    .close-button, .view-details-btn, .nav-button {
+      padding: 0.5rem 1rem; /* Reduced padding for smaller buttons */
+      margin: 0.5rem; /* Consistent margin for all buttons */
+    }
+  
+    .nav-button {
+      font-size: 0.9rem; /* Adjusted font size */
+    }
+  }
+  

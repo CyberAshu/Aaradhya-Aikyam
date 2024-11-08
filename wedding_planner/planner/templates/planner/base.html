@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your trusted partner for unforgettable events. Specializing in wedding planning, corporate events, and more.">
+    <title>{% block title %}Wedding Planner{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/logo.png' %}">
+    
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
+    <!-- Section-specific CSS -->
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services.css' %}">
+    <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact_admin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    
+    <!-- Page-specific CSS (optional) -->
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+<body>
+    <!-- Navbar -->
+<!-- Navbar -->
+<header>
+  <div class="logo">
+      <a href="{% url 'home' %}">
+          <img src="{% static 'images/logo.png' %}" alt="Wedding Planner Logo">
+      </a>
+  </div>
+  <div id="menu-toggle" class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+  </div>
+  <nav id="nav" class="nav-links">
+      <ul id="nav-links">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'services' %}">Event Services</a></li>
+          <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+          <li><a href="{% url 'contact_admin' %}">Contact</a></li>
+      </ul>
+  </nav>
+</header>
+
+
+    <!-- Sidebar (for mobile view) -->
+    <div id="sidebar" class="sidebar">
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'services' %}">Event Services</a></li>
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'contact_admin' %}">Contact</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="footer-content">
+                <p>Follow Us:</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="footer-info">
+                    <p>&copy; 2024 Aaradhya Aikyam. All Rights Reserved.</p>
+                    <p>Powered by <strong>Aaradhyadharma IT Solution</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h4>About Us</h4>
+                <p>Your trusted partner for unforgettable events. We specialize in wedding planning, corporate events, and more.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+                    <li><a href="{% url 'contact_admin' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Vijay Nagar, Indore, Madhya Pradesh</p>
+                <p><i class="fas fa-phone"></i> +91 7489014432</p>
+                <p><i class="fas fa-envelope"></i> arushi@weddingplanner.com</p>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Aaradhya Aikyam. All Rights Reserved.</p>
+            <p>Powered by <strong>Aaradhyadharma IT Solution</strong></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/home.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+/* Basic styling for the main section */
+.event-services,
+.additional-services {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f9f9f9; /* Light background color */
+  margin-top: 80px; /* Add space from the top to avoid navbar overlap */
+}
+
+/* Heading styling */
+.event-services h1,
+.additional-services h1 {
+  font-size: 2.5em;
+  color: #391310; /* Primary color */
+  margin-bottom: 30px;
+}
+
+/* Container for service cards */
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Styling for each service card */
+.service-card {
+  position: relative;
+  width: 280px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  background-color: white;
+}
+
+/* Card hover effect */
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Image styling for event and service icons */
+.service-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.service-icon img {
+  width: 50px; /* Adjust icon size as needed */
+  height: 50px; /* Adjust icon size as needed */
+  object-fit: cover;
+}
+
+/* Main event/service image */
+.service-card img {
+  width: 100%;
+  height: 180px; /* Adjust height as needed */
+  object-fit: cover;
+}
+
+/* Content inside the card */
+.service-content {
+  padding: 15px;
+  text-align: left;
+}
+
+.service-content h2 {
+  font-size: 1.5em;
+  color: #391310; /* Primary color */
+  margin: 0;
+  font-weight: 600;
+}
+
+.service-content p {
+  font-size: 0.95em;
+  color: #555; /* Text color */
+  margin: 10px 0 15px;
+  line-height: 1.6;
+}
+
+/* View Details button styling */
+.view-details {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 0.9em;
+  color: white;
+  background-color: #BF7656; /* Secondary color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.view-details:hover {
+  background-color: #945640; /* Darker secondary color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .service-card {
+    width: 90%; /* Make cards wider on smaller screens */
+  }
+
+  .service-content h2 {
+    font-size: 1.3em; /* Reduce heading size for smaller screens */
+  }
+
+  .service-content p {
+    font-size: 0.85em; /* Reduce text size for smaller screens */
+  }
+
+  .service-icon img {
+    width: 40px; /* Smaller icon size for mobile */
+    height: 40px; /* Smaller icon size for mobile */
+  }
+}

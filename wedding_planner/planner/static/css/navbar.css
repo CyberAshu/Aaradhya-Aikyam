@@ -1,0 +1,338 @@
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: var(--header-light);
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: background-color 0.3s, padding 0.3s;
+    z-index: 10;
+}
+
+header.transparent {
+    padding: 8px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--dark-tone);
+}
+
+header .logo img {
+    height: 60px;
+    width: auto;
+    filter: brightness(0);
+    transition: filter 0.3s, height 0.3s;
+}
+
+header.transparent .logo img {
+    height: 50px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0 12px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+header.transparent nav ul li a {
+    color: var(--dark-tone);
+}
+
+header nav ul li a:hover {
+    color: #ffdd59;
+}
+
+#theme-toggle, #menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+header.transparent #theme-toggle, header.transparent #menu-toggle {
+    color: var(--dark-tone);
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Move sidebar to the left */
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(135deg, #4B3D3D, #391310);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.6);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Align items at the top and footer at the bottom */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 20px;
+    flex-grow: 1; /* Ensures the footer stays at the bottom */
+    margin: 0; /* Remove default margin */
+}
+
+.sidebar ul li {
+    margin: 15px 0; /* Reduced margin for better spacing */
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #f1f1f1;
+    font-size: 18px;
+    padding: 12px;
+    display: block;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background: #ffdd59;
+    color: #4B3D3D;
+    box-shadow: 0 2px 10px rgba(255, 221, 89, 0.3);
+}
+
+.sidebar-footer {
+    background-color: #2e2525;
+    padding: 20px 15px;
+    text-align: center;
+    border-top: 2px solid #945640;
+    color: #d8a384;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Add gap for better spacing */
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #d8a384;
+    font-size: 22px;
+    margin: 0 12px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ffdd59;
+    transform: scale(1.15) rotate(5deg);
+}
+
+.footer-info {
+    margin-top: 10px;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.footer-info strong {
+    color: #ffdd59;
+    font-weight: 500; /* Highlight the company name */
+}
+
+/* Additional CSS for subtle animations */
+.sidebar-footer p {
+    margin: 0;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none; /* Initially hide the hamburger button */
+    cursor: pointer;
+    width: 35px; /* Adjusted width for better visibility */
+    height: 30px; /* Adjusted height for a better click area */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out the lines */
+}
+
+.hamburger .line {
+    background-color: #4B3D3D; /* Color of the hamburger lines */
+    height: 5px; /* Increased height for thicker lines */
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Space between hamburger lines */
+.hamburger .line:not(:last-child) {
+    margin-bottom: 5px; /* Adds space between the lines */
+}
+
+/* Show the hamburger menu on smaller screens */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    header nav ul {
+        display: none; /* Initially hide the nav items in mobile view */
+    }
+
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    /* Display the sidebar when active */
+    header.active .sidebar {
+        display: block;
+    }
+}
+
+/* Hamburger Button */
+#menu-toggle {
+    position: relative;
+    width: 35px; /* Slightly increase the size for better visibility */
+    height: 30px; /* Increased height for more comfortable click area */
+    cursor: pointer;
+    display: none;
+    z-index: 20;
+    transition: all 0.3s ease;
+}
+
+/* The hamburger lines */
+#menu-toggle .hamburger,
+#menu-toggle .hamburger::before,
+#menu-toggle .hamburger::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 4px; /* Increased height for thicker lines */
+    background-color: #fff; /* White color for the lines */
+    border-radius: 10px; /* More rounded edges for a smoother look */
+    transition: all 0.3s ease;
+}
+
+/* Align the lines of the hamburger button */
+#menu-toggle .hamburger {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#menu-toggle .hamburger::before {
+    top: -10px;
+}
+
+#menu-toggle .hamburger::after {
+    top: 10px;
+}
+
+/* Add a subtle shadow to the button */
+#menu-toggle:hover .hamburger,
+#menu-toggle:hover .hamburger::before,
+#menu-toggle:hover .hamburger::after {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+/* Active state - Transform the hamburger into an "X" */
+#menu-toggle.active .hamburger {
+    transform: rotate(45deg);
+    background-color: #ffdd59; /* Color change on active state */
+}
+
+#menu-toggle.active .hamburger::before {
+    top: 0;
+    transform: rotate(90deg);
+    background-color: #ffdd59; /* Color change on active state */
+}
+
+#menu-toggle.active .hamburger::after {
+    top: 0;
+    transform: rotate(90deg);
+    background-color: #ffdd59; /* Color change on active state */
+}
+
+/* Responsive styling - Show hamburger button on small screens */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+}
+
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block;
+    }
+
+    #nav {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Keep sidebar off-screen initially */
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #4B3D3D;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+
+    header.active #nav {
+        left: 0; /* Move nav to the left side */
+    }
+
+    #nav-links {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #nav-links li a {
+        font-size: 1.2rem;
+        color: white;
+        transition: color 0.3s;
+    }
+
+    #nav-links li a:hover {
+        color: #ffdd59;
+    }
+
+    /* Show the sidebar when active */
+    .sidebar.active {
+        left: 0; /* Move sidebar to the left */
+    }
+}

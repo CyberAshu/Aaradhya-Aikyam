@@ -1,0 +1,90 @@
+{% extends 'planner/base.html' %}
+{% load static %}
+{% block title %}Our Portfolio{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="portfolio-header section">
+  <h1 class="portfolio-title">Our Portfolio</h1>
+  <p class="portfolio-subtitle">Discover our curated work that reflects our passion and expertise.</p>
+</section>
+
+<section class="portfolio-gallery section">
+  <div class="gallery-container">
+    {% for item in portfolio_items %}
+    <div class="portfolio-card" onclick="openPortfolioModal({{ item.id }})">
+      <img src="{{ item.image.url }}" alt="{{ item.title }}" class="portfolio-image" loading="lazy">
+      <div class="portfolio-overlay">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.description|truncatewords:15 }}</p>
+        <button class="view-details-btn">
+          <i class="fas fa-eye"></i> View Details
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<div id="portfolioModal" class="portfolio-modal">
+  <span class="close-modal" onclick="closePortfolioModal()">&times;</span>
+  <div class="modal-content">
+    <img id="modalImage" src="" alt="Project Image" class="modal-image">
+    <h2 id="modalTitle">Project Title</h2>
+    <p id="modalDescription">Detailed description of the project.</p>
+    <div class="modal-navigation">
+      <button class="nav-button" id="prevButton" onclick="changeProject(-1)">&#10094; Previous</button>
+      <button class="nav-button" id="nextButton" onclick="changeProject(1)">Next &#10095;</button>
+    </div>
+    <button class="close-button" onclick="closePortfolioModal()">Close</button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  let currentProjectIndex = 0;
+  const projects = [
+    {% for item in portfolio_items %}
+    {
+      id: {{ item.id }},
+      title: "{{ item.title }}",
+      description: "{{ item.description|escapejs }}",
+      image_url: "{{ item.image.url }}"
+    },
+    {% endfor %}
+  ];
+
+  function openPortfolioModal(id) {
+    currentProjectIndex = projects.findIndex(p => p.id === id);
+    loadProject(currentProjectIndex);
+    const modal = document.getElementById("portfolioModal");
+    modal.classList.add("open-modal");
+  }
+
+  function loadProject(index) {
+    const project = projects[index];
+    if (project) {
+      document.getElementById("modalTitle").innerHTML = project.title;
+      document.getElementById("modalDescription").innerHTML = project.description;
+      document.getElementById("modalImage").src = project.image_url;
+    }
+  }
+
+  function changeProject(direction) {
+    currentProjectIndex += direction;
+    if (currentProjectIndex < 0) currentProjectIndex = projects.length - 1;
+    if (currentProjectIndex >= projects.length) currentProjectIndex = 0;
+    loadProject(currentProjectIndex);
+  }
+
+  function closePortfolioModal() {
+    const modal = document.getElementById("portfolioModal");
+    modal.classList.remove("open-modal");
+  }
+</script>
+{% endblock %}

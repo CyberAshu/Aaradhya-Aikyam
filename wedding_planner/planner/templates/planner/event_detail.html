@@ -1,0 +1,153 @@
+{% extends 'planner/base.html' %}
+{% load static %}
+
+{% block title %}{{ event.name }} - Event Details{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/event_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="event-detail">
+  <!-- Event Header -->
+  <div class="event-header">
+    <div class="event-image-wrapper">
+      <img src="{{ event.image.url }}" alt="{{ event.name }}" class="event-image">
+    </div>
+    <div class="event-info">
+      <h1>{{ event.name }}</h1>
+      <p class="event-description">{{ event.description }}</p>
+    </div>
+  </div>
+
+  <!-- Event Gallery -->
+  <section class="event-gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-container">
+        {% for image in event.event_images.all %}
+        <div class="gallery-item">
+          <img src="{{ image.image.url }}" alt="{{ image.description }}" class="gallery-image">
+        </div>
+        {% empty %}
+        <p>No gallery images available for this event.</p>
+        {% endfor %}
+    </div>
+  </section>
+
+  <!-- Service Selection -->
+  <section class="service-selection">
+    <h2>Select Services</h2>
+    <form id="serviceForm" method="POST" action="{% url 'book_service' event.id %}">
+      {% csrf_token %}
+      {% if event.services.all %}
+        <h3>Available Services</h3>
+        <div class="services-list">
+          {% for service in event.services.all %}
+          <div class="service-option">
+            <input type="checkbox" name="services" value="{{ service.id }}" id="service-{{ service.id }}" class="service-checkbox">
+            <label for="service-{{ service.id }}" class="service-label">
+              <strong>{{ service.service_name }}</strong> - ${{ service.price }}
+            </label>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No services available for this event.</p>
+      {% endif %}
+    </form>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="contact-admin">
+    <h2>Contact Us to Book</h2>
+    <div class="selected-services-summary">
+      <h3>Selected Services</h3>
+      <ul id="selectedServicesList"></ul>
+    </div>
+    <form id="contactForm" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="selected_services" id="selectedServicesInput">
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit" class="button contact-button">Send Message</button>
+    </form>
+  </section>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  emailjs.init('fMg-IUbzI08ws93QI');
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const serviceCheckboxes = document.querySelectorAll('.service-checkbox');
+    const selectedServicesList = document.getElementById('selectedServicesList');
+    const selectedServicesInput = document.getElementById('selectedServicesInput');
+
+    // Update selected services list
+    function updateSelectedServices() {
+      const selectedServices = [];
+      selectedServicesList.innerHTML = '';
+
+      serviceCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          const listItem = document.createElement('li');
+          listItem.textContent = checkbox.nextElementSibling.textContent.trim();
+          selectedServicesList.appendChild(listItem);
+          selectedServices.push(checkbox.value);
+        }
+      });
+
+      selectedServicesInput.value = selectedServices.join(', ');
+    }
+
+    // Add event listener to update selected services immediately after selection
+    serviceCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateSelectedServices);
+    });
+
+    // Handle contact form submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      if (!selectedServicesInput.value) {
+        alert('Please select at least one service before sending the message.');
+        return;
+      }
+
+      // Form data
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value,
+        services: selectedServicesInput.value,
+      };
+
+      // Send email via EmailJS
+      emailjs.send('service_za3w6fa', 'template_8g0bgbe', formData)
+        .then(function(response) {
+          alert('Message sent successfully!');
+          contactForm.reset();  // Reset form on success
+          selectedServicesList.innerHTML = ''; // Clear selected services list
+          selectedServicesInput.value = ''; // Clear input
+        }, function(error) {
+          alert('Failed to send message. Please try again later.');
+        });
+    });
+  });
+</script>
+{% endblock %}

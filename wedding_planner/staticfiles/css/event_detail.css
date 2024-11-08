@@ -1,0 +1,125 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .event-detail {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .event-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .event-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    margin: 20px 0;
+  }
+  
+  h2 {
+    font-size: 1.8em;
+    margin: 20px 0;
+    color: #BF7656; /* Color for section titles */
+  }
+  
+  .event-description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .event-gallery {
+    margin-bottom: 20px;
+  }
+  
+  .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s;
+  }
+  
+  .gallery-image:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+  }
+  
+  .service-selection {
+    margin-bottom: 20px;
+  }
+  
+  .service-option {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .service-option:hover {
+    background: #BF7656;
+    color: #ffffff;
+  }
+  
+  .book-button, .contact-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #BF7656; /* Button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .book-button:hover, .contact-button:hover {
+    background-color: #945640; /* Darker shade for hover */
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+  
+  .contact-admin form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-admin label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+  
+  .contact-admin input, 
+  .contact-admin textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .contact-admin textarea {
+    resize: vertical;
+  }
+  

@@ -1,0 +1,66 @@
+{% extends 'planner/base.html' %}
+{% load static %}
+
+{% block title %}Our Services - Wedding Planner{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Portfolio Header Section -->
+<section class="portfolio-header section">
+  <h1 class="portfolio-title">Our Services</h1>
+  <p class="portfolio-subtitle">Discover our curated work that reflects our passion and expertise.</p>
+</section>
+
+<!-- Event Services Section -->
+<section class="event-services section">
+  <h1>Event Services</h1>
+  <div class="services-container">
+    {% for event in events %}
+    <div class="service-card" onclick="redirectToEventDetail('{{ event.id }}')">
+      <div class="service-icon">
+        <i class="fas fa-{{ event.icon|default:'calendar' }}"></i> <!-- Default to calendar if no icon is specified -->
+      </div>
+      <img src="{{ event.image.url }}" alt="{{ event.name }}">
+      <div class="service-content">
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description|truncatewords:15 }}</p>
+        <button class="btn-book">View Details</button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Additional Services Section -->
+<section class="additional-services section">
+  <h1>Additional Services</h1>
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Redirect to event details when a card is clicked
+function redirectToEventDetail(eventId) {
+    window.location.href = '/event/' + eventId + '/';
+}
+
+// Optional: Add smooth scroll to the "View Details" buttons for better UX
+document.querySelectorAll('.service-card .btn-book').forEach(button => {
+  button.addEventListener('click', function(event) {
+    event.preventDefault();
+    const targetId = this.getAttribute('href').split('#')[1];
+    const targetElement = document.getElementById(targetId);
+    
+    window.scrollTo({
+      top: targetElement.offsetTop - 50,
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
+{% endblock %}
